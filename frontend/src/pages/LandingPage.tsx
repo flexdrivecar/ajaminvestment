@@ -612,6 +612,102 @@ export function LandingPage() {
           </Link>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Company Info */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center mb-4">
+                <img 
+                  src="/ajmal-logo.jpeg" 
+                  alt="Ajmal Investments PLC" 
+                  className="h-10 w-10 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h3 className="text-xl font-bold">Ajmal Investments PLC</h3>
+                </div>
+              </div>
+              <p className="text-slate-300 mb-4">
+                Premier international investment firm delivering exceptional returns through diversified portfolio management.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Globe className="h-4 w-4 text-yellow-400" />
+                  <span className="text-slate-300">Global Headquarters</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Building2 className="h-4 w-4 text-yellow-400" />
+                  <span className="text-slate-300">52 Countries Worldwide</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><Link to="/investments" className="text-slate-300 hover:text-yellow-400 transition-colors">Investment Portfolio</Link></li>
+                <li><Link to="/dashboard" className="text-slate-300 hover:text-yellow-400 transition-colors">Performance Dashboard</Link></li>
+                <li><Link to="/" className="text-slate-300 hover:text-yellow-400 transition-colors">About Us</Link></li>
+                <li><Link to="/" className="text-slate-300 hover:text-yellow-400 transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+
+            {/* Investment Sectors */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Investment Sectors</h4>
+              <ul className="space-y-2">
+                <li><span className="text-slate-300">Stocks & Equities</span></li>
+                <li><span className="text-slate-300">Private Equity</span></li>
+                <li><span className="text-slate-300">Venture Capital</span></li>
+                <li><span className="text-slate-300">Real Estate</span></li>
+                <li><span className="text-slate-300">Cryptocurrencies</span></li>
+                <li><span className="text-slate-300">Renewable Energy</span></li>
+              </ul>
+            </div>
+
+            {/* Get Started */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Get Started</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <DollarSign className="h-4 w-4 text-yellow-400" />
+                  <a href="mailto:invest@ajmal.com" className="text-slate-300 hover:text-yellow-400 transition-colors">
+                    invest@ajmal.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Building2 className="h-4 w-4 text-yellow-400" />
+                  <a href="tel:+15551234567" className="text-slate-300 hover:text-yellow-400 transition-colors">
+                    +1 (555) 123-4567
+                  </a>
+                </div>
+                <Link to="/register">
+                  <Button className="bg-yellow-500 text-black hover:bg-yellow-400 mt-4 w-full">
+                    Start Investing
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-slate-700 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-slate-400 text-sm mb-4 md:mb-0">
+                © 2024 Ajmal Investments PLC. All rights reserved.
+              </div>
+              <div className="flex space-x-6 text-sm">
+                <Link to="/" className="text-slate-400 hover:text-yellow-400 transition-colors">Privacy Policy</Link>
+                <Link to="/" className="text-slate-400 hover:text-yellow-400 transition-colors">Terms of Service</Link>
+                <Link to="/" className="text-slate-400 hover:text-yellow-400 transition-colors">Risk Disclosure</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
