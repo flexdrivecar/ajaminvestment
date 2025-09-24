@@ -4,8 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
-import { TrendingUp, DollarSign, PieChart as PieChartIcon, AlertCircle, Plus, Eye, Download } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { TrendingUp, DollarSign, PieChart as PieChartIcon, AlertCircle, Plus, Eye, Download, CheckCircle, X } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
 const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000'
@@ -35,10 +35,19 @@ export function DashboardPage() {
   const { user } = useAuth()
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null)
   const [loading, setLoading] = useState(true)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [showOnboarding, setShowOnboarding] = useState(false)
 
   useEffect(() => {
     fetchPortfolio()
-  }, [])
+    
+    if (searchParams.get('onboarding') === 'true') {
+      setShowOnboarding(true)
+      const newSearchParams = new URLSearchParams(searchParams)
+      newSearchParams.delete('onboarding')
+      setSearchParams(newSearchParams, { replace: true })
+    }
+  }, [searchParams, setSearchParams])
 
   const fetchPortfolio = async () => {
     try {
@@ -123,6 +132,32 @@ export function DashboardPage() {
             Here's an overview of your investment portfolio
           </p>
         </div>
+
+        {showOnboarding && (
+          <Card className="mb-8 border-green-200 bg-green-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <div>
+                    <p className="text-green-800 font-medium">Welcome to Ajmal Investments!</p>
+                    <p className="text-green-700 text-sm">
+                      Your account is created and pending KYC verification. Please upload the required documents to start investing.
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowOnboarding(false)}
+                  className="text-green-600 hover:text-green-800"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {user?.kyc_status !== 'approved' && (
           <Card className="mb-8 border-yellow-200 bg-yellow-50">

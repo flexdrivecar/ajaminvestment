@@ -6,11 +6,13 @@ from typing import List, Optional
 import uuid
 import os
 import io
+import re
 
 from .models import (
     User, UserCreate, UserLogin, Token, Investment, Transaction, 
     InvestmentCategory, Portfolio, KYCStatus, TransactionType,
-    EmailVerification, ReferralInfo, PDFStatementRequest
+    EmailVerification, ReferralInfo, PDFStatementRequest, UserStatus,
+    RegistrationError
 )
 from .database import db
 from .database_postgres import postgres_db
@@ -45,52 +47,111 @@ async def shutdown_event():
     if USE_POSTGRES:
         await postgres_db.disconnect()
 
+def validate_password_strength(password: str) -> bool:
+    """Validate password meets security requirements"""
+    if len(password) < 8:
+        return False
+    if not re.search(r'[A-Z]', password):
+        return False
+    if not re.search(r'[a-z]', password):
+        return False
+    if not re.search(r'\d', password):
+        return False
+    return True
+
+async def validate_referral_code(referral_code: str):
+    """Validate referral code exists"""
+    if not referral_code or len(referral_code) < 3:
+        return None
+    return {"valid": True}
+
 @app.get("/healthz")
 async def healthz():
     return {"status": "ok"}
 
 @app.post("/auth/register", response_model=dict)
 async def register(user_data: UserCreate):
-    if USE_POSTGRES:
-        existing_user = await current_db.get_user_by_email(user_data.email)
-    else:
-        existing_user = current_db.get_user_by_email(user_data.email)
-    
-    if existing_user:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Email already registered"
+    try:
+        if not validate_password_strength(user_data.password):
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "error_code": "400_WEAK_PASSWORD",
+                    "message": "Password must be at least 8 characters with uppercase, lowercase, and number",
+                    "field": "password"
+                }
+            )
+        
+        if USE_POSTGRES:
+            existing_user = await current_db.get_user_by_email(user_data.email)
+        else:
+            existing_user = current_db.get_user_by_email(user_data.email)
+        
+        if existing_user:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "error_code": "409_EMAIL_EXISTS",
+                    "message": "That email is already registered",
+                    "field": "email"
+                }
+            )
+        
+        if user_data.referral_code:
+            referral_valid = await validate_referral_code(user_data.referral_code)
+            if not referral_valid:
+                raise HTTPException(
+                    status_code=400,
+                    detail={
+                        "error_code": "400_INVALID_REFERRAL",
+                        "message": "Invalid referral code",
+                        "field": "referral_code"
+                    }
+                )
+        
+        hashed_password = get_password_hash(user_data.password)
+        user_dict = user_data.dict()
+        user_dict["hashed_password"] = hashed_password
+        user_dict["status"] = "active_restricted"
+        user_dict["kyc_status"] = "pending"
+        del user_dict["password"]
+        
+        if USE_POSTGRES:
+            user = await current_db.create_user(user_dict)
+            verification_token = await current_db.create_email_verification_token(user.id)
+            await email_service.send_verification_email(user.email, user.first_name, verification_token)
+        else:
+            user = current_db.create_user(user_dict)
+        
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = create_access_token(
+            data={"sub": user.email}, expires_delta=access_token_expires
         )
-    
-    hashed_password = get_password_hash(user_data.password)
-    user_dict = user_data.dict()
-    user_dict["hashed_password"] = hashed_password
-    del user_dict["password"]
-    
-    if USE_POSTGRES:
-        user = await current_db.create_user(user_dict)
-        verification_token = await current_db.create_email_verification_token(user.id)
-        await email_service.send_verification_email(user.email, user.first_name, verification_token)
-    else:
-        user = current_db.create_user(user_dict)
-    
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"sub": user.email}, expires_delta=access_token_expires
-    )
-    
-    return {
-        "message": "User registered successfully. Please check your email for verification." if USE_POSTGRES else "User registered successfully",
-        "access_token": access_token,
-        "token_type": "bearer",
-        "user": {
-            "id": user.id,
-            "email": user.email,
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "kyc_status": user.kyc_status
+        
+        return {
+            "message": "User registered successfully. Please check your email for verification." if USE_POSTGRES else "User registered successfully",
+            "access_token": access_token,
+            "token_type": "bearer",
+            "user": {
+                "id": user.id,
+                "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "status": getattr(user, 'status', 'active_restricted'),
+                "kyc_status": user.kyc_status
+            }
         }
-    }
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Registration error: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error_code": "500_INTERNAL_ERROR",
+                "message": "Internal server error"
+            }
+        )
 
 @app.post("/auth/login", response_model=Token)
 async def login(user_credentials: UserLogin):

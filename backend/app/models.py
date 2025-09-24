@@ -7,6 +7,12 @@ class UserRole(str, Enum):
     USER = "user"
     ADMIN = "admin"
 
+class UserStatus(str, Enum):
+    ACTIVE = "active"
+    ACTIVE_RESTRICTED = "active_restricted"
+    SUSPENDED = "suspended"
+    INACTIVE = "inactive"
+
 class KYCStatus(str, Enum):
     PENDING = "pending"
     APPROVED = "approved"
@@ -51,6 +57,7 @@ class User(BaseModel):
     country: str
     phone: Optional[str] = None
     role: UserRole = UserRole.USER
+    status: UserStatus = UserStatus.ACTIVE_RESTRICTED
     kyc_status: KYCStatus = KYCStatus.PENDING
     is_active: bool = True
     balance: float = 0.0
@@ -129,6 +136,11 @@ class ReferralInfo(BaseModel):
     total_referrals: int
     total_earned: float
     referrals: List[dict]
+
+class RegistrationError(BaseModel):
+    error_code: str
+    message: str
+    field: Optional[str] = None
 
 class PDFStatementRequest(BaseModel):
     start_date: Optional[datetime] = None

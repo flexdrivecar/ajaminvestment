@@ -262,11 +262,12 @@ class PostgreSQLDatabase:
                     referred_by = referrer['id']
             
             user_id = await conn.fetchval('''
-                INSERT INTO users (email, hashed_password, first_name, last_name, country, phone, referral_code, referred_by)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+                INSERT INTO users (email, hashed_password, first_name, last_name, country, phone, status, kyc_status, referral_code, referred_by)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                 RETURNING id
             ''', user_data["email"], user_data["hashed_password"], user_data["first_name"], 
-                user_data["last_name"], user_data["country"], user_data.get("phone"), 
+                user_data["last_name"], user_data["country"], user_data.get("phone"),
+                user_data.get("status", "active_restricted"), user_data.get("kyc_status", "pending"),
                 referral_code, referred_by)
             
             if referred_by:
