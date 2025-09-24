@@ -60,18 +60,46 @@ export function Navbar() {
 
           {!user && (
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+              <a 
+                href="#investments" 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('investments')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Investments
-              </Link>
-              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+              </a>
+              <a 
+                href="#performance" 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('performance')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Performance
-              </Link>
-              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+              </a>
+              <a 
+                href="#about" 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 About
-              </Link>
-              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+              </a>
+              <a 
+                href="#contact" 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Contact
-              </Link>
+              </a>
             </div>
           )}
 
