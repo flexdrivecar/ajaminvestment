@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
@@ -18,16 +18,6 @@ const countries = [
   'Other'
 ]
 
-interface FormData {
-  first_name: string
-  last_name: string
-  email: string
-  country: string
-  phone: string
-  referral_code: string
-  password: string
-  confirmPassword: string
-}
 
 interface ValidationErrors {
   [key: string]: string
