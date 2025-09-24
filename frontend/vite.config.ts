@@ -9,5 +9,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    host: true,
+    strictPort: false,
+    allowedHosts: ['commit-roast-app-tunnel-bdodp5ax.devinapps.com', '.devinapps.com']
+  },
 })
 

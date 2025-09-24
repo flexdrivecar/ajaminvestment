@@ -28,14 +28,17 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">
-                Ajmal Investments
+              <img 
+                src="/ajmal-logo.jpeg" 
+                alt="Ajmal Investments PLC" 
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <span className="ml-3 text-xl font-bold text-gray-900">
+                Ajmal Investments PLC
               </span>
             </Link>
           </div>
+
 
           {user && (
             <div className="hidden md:flex items-center space-x-8">
@@ -52,6 +55,23 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
+            </div>
+          )}
+
+          {!user && (
+            <div className="hidden md:flex items-center space-x-8">
+              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+                Investments
+              </Link>
+              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+                Performance
+              </Link>
+              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+                About
+              </Link>
+              <Link to="/" className="text-gray-700 hover:text-gray-900 font-medium">
+                Contact
+              </Link>
             </div>
           )}
 
@@ -101,7 +121,7 @@ export function Navbar() {
                   <Button variant="ghost">Sign In</Button>
                 </Link>
                 <Link to="/register">
-                  <Button>Get Started</Button>
+                  <Button className="bg-slate-900 hover:bg-slate-800">Get Started</Button>
                 </Link>
               </div>
             )}
@@ -138,17 +158,17 @@ export function Navbar() {
                   </Link>
                 ))}
                 <div className="px-3 py-2 text-sm text-gray-600">
-                  Balance: ${user.balance.toLocaleString()}
+                  Balance: ${user?.balance.toLocaleString()}
                 </div>
                 <div className="px-3 py-2">
                   <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                    user.kyc_status === 'approved' 
+                    user?.kyc_status === 'approved' 
                       ? 'bg-green-100 text-green-800' 
-                      : user.kyc_status === 'rejected'
+                      : user?.kyc_status === 'rejected'
                       ? 'bg-red-100 text-red-800'
                       : 'bg-yellow-100 text-yellow-800'
                   }`}>
-                    KYC: {user.kyc_status}
+                    KYC: {user?.kyc_status}
                   </div>
                 </div>
                 <button
