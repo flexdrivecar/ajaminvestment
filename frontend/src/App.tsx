@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { Navbar } from './components/Navbar'
@@ -8,6 +7,7 @@ import { DashboardPage } from './pages/DashboardPage'
 import { InvestmentsPage } from './pages/InvestmentsPage'
 import { KYCPage } from './pages/KYCPage'
 import { AdminPage } from './pages/AdminPage'
+import { ReferralPage } from './pages/ReferralPage'
 import { LandingPage } from './pages/LandingPage'
 import { Toaster } from 'sonner'
 
@@ -66,6 +66,11 @@ function AppContent() {
         <Route path="/kyc" element={
           <ProtectedRoute>
             <KYCPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/referrals" element={
+          <ProtectedRoute>
+            <ReferralPage />
           </ProtectedRoute>
         } />
         <Route path="/admin" element={

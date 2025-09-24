@@ -28,6 +28,7 @@ class TransactionType(str, Enum):
     WITHDRAWAL = "withdrawal"
     INVESTMENT = "investment"
     PROFIT = "profit"
+    REFERRAL_COMMISSION = "referral_commission"
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -36,6 +37,7 @@ class UserCreate(BaseModel):
     last_name: str
     country: str
     phone: Optional[str] = None
+    referral_code: Optional[str] = None
 
 class UserLogin(BaseModel):
     email: EmailStr
@@ -52,6 +54,10 @@ class User(BaseModel):
     kyc_status: KYCStatus = KYCStatus.PENDING
     is_active: bool = True
     balance: float = 0.0
+    referral_code: Optional[str] = None
+    referred_by: Optional[str] = None
+    email_verified: bool = False
+    email_verification_token: Optional[str] = None
     created_at: datetime
     updated_at: datetime
     hashed_password: Optional[str] = None
@@ -114,3 +120,17 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+class EmailVerification(BaseModel):
+    token: str
+
+class ReferralInfo(BaseModel):
+    referral_code: str
+    total_referrals: int
+    total_earned: float
+    referrals: List[dict]
+
+class PDFStatementRequest(BaseModel):
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    statement_type: str = "full"

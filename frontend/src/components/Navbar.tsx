@@ -19,6 +19,7 @@ export function Navbar() {
     { name: 'Dashboard', href: '/dashboard' },
     { name: 'Investments', href: '/investments' },
     { name: 'KYC Verification', href: '/kyc' },
+    { name: 'Referrals', href: '/referrals' },
     ...(user.role === 'admin' ? [{ name: 'Admin Panel', href: '/admin' }] : [])
   ] : []
 

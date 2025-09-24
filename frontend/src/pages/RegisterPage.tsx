@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { Button } from '../components/ui/button'
@@ -26,13 +26,22 @@ export function RegisterPage() {
     first_name: '',
     last_name: '',
     country: '',
-    phone: ''
+    phone: '',
+    referral_code: ''
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   
   const { register } = useAuth()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const refCode = urlParams.get('ref')
+    if (refCode) {
+      setFormData(prev => ({ ...prev, referral_code: refCode }))
+    }
+  }, [])
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -169,6 +178,19 @@ export function RegisterPage() {
                   onChange={(e) => handleChange('phone', e.target.value)}
                   className="mt-1"
                   placeholder="+1 (555) 123-4567"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="referral_code">Referral Code (Optional)</Label>
+                <Input
+                  id="referral_code"
+                  name="referral_code"
+                  type="text"
+                  value={formData.referral_code}
+                  onChange={(e) => handleChange('referral_code', e.target.value)}
+                  className="mt-1"
+                  placeholder="Enter referral code if you have one"
                 />
               </div>
 

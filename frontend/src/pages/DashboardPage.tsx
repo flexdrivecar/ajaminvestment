@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
-import { Progress } from '../components/ui/progress'
 import { Badge } from '../components/ui/badge'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
-import { TrendingUp, DollarSign, PieChart as PieChartIcon, AlertCircle, Plus, Eye } from 'lucide-react'
+import { TrendingUp, DollarSign, PieChart as PieChartIcon, AlertCircle, Plus, Eye, Download } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -49,6 +48,40 @@ export function DashboardPage() {
       console.error('Failed to fetch portfolio:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleDownloadStatement = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`${API_URL}/statements/pdf`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          statement_type: 'full'
+        })
+      })
+      
+      if (response.ok) {
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.style.display = 'none'
+        a.href = url
+        a.download = 'investment-statement.pdf'
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+        console.log('Statement downloaded successfully!')
+      } else {
+        console.error('Failed to generate statement')
+      }
+    } catch (error) {
+      console.error('Error downloading statement:', error)
     }
   }
 
@@ -206,7 +239,7 @@ export function DashboardPage() {
                       fill="#8884d8"
                       dataKey="value"
                     >
-                      {categoryData.map((entry, index) => (
+                      {categoryData.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
@@ -294,6 +327,16 @@ export function DashboardPage() {
                     New Investment
                   </Button>
                 </Link>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  onClick={handleDownloadStatement}
+                  disabled={user?.kyc_status !== 'approved'}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download Statement
+                </Button>
                 
                 <Button variant="outline" className="w-full" disabled={user?.kyc_status !== 'approved'}>
                   <DollarSign className="h-4 w-4 mr-2" />
