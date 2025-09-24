@@ -34,6 +34,7 @@ interface RegisterData {
   last_name: string
   country: string
   phone?: string
+  referral_code?: string
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
