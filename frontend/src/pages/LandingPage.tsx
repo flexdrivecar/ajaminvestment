@@ -82,13 +82,112 @@ export function LandingPage() {
   return (
     <div className="min-h-screen">
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div 
-            className="w-full h-full bg-repeat bg-[length:60px_60px]" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
+        {/* Blurred city background with bokeh lights */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-slate-800/60 to-blue-900/80"></div>
+          {/* Bokeh light effects */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-yellow-400/15 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-40 h-40 bg-blue-300/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-28 h-28 bg-cyan-400/15 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/6 w-20 h-20 bg-blue-500/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-1/2 right-1/6 w-36 h-36 bg-indigo-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        {/* City skyline silhouettes - more prominent */}
+        <div className="absolute bottom-0 left-0 right-0 h-80 opacity-40">
+          <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center space-x-1">
+            <div className="bg-slate-800/80 w-8 h-40 shadow-2xl"></div>
+            <div className="bg-slate-700/90 w-12 h-56 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-8 h-48 shadow-2xl"></div>
+            <div className="bg-slate-600/90 w-16 h-72 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-10 h-60 shadow-2xl"></div>
+            <div className="bg-slate-700/90 w-14 h-80 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-8 h-52 shadow-2xl"></div>
+            <div className="bg-slate-700/80 w-12 h-64 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-10 h-56 shadow-2xl"></div>
+            <div className="bg-slate-600/90 w-18 h-68 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-8 h-44 shadow-2xl"></div>
+            <div className="bg-slate-700/80 w-14 h-76 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-10 h-60 shadow-2xl"></div>
+            <div className="bg-slate-700/90 w-12 h-48 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-8 h-56 shadow-2xl"></div>
+            <div className="bg-slate-700/80 w-16 h-72 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-10 h-64 shadow-2xl"></div>
+            <div className="bg-slate-600/90 w-14 h-52 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-8 h-60 shadow-2xl"></div>
+            <div className="bg-slate-700/80 w-12 h-48 shadow-2xl"></div>
+            <div className="bg-slate-800/80 w-10 h-44 shadow-2xl"></div>
+            <div className="bg-slate-700/90 w-16 h-68 shadow-2xl"></div>
+          </div>
+          {/* Building window lights */}
+          <div className="absolute bottom-16 left-20 w-1 h-1 bg-yellow-300 opacity-80"></div>
+          <div className="absolute bottom-24 left-32 w-1 h-1 bg-yellow-300 opacity-60"></div>
+          <div className="absolute bottom-32 left-48 w-1 h-1 bg-yellow-300 opacity-80"></div>
+          <div className="absolute bottom-20 left-64 w-1 h-1 bg-yellow-300 opacity-70"></div>
+          <div className="absolute bottom-28 left-80 w-1 h-1 bg-yellow-300 opacity-60"></div>
+          <div className="absolute bottom-36 left-96 w-1 h-1 bg-yellow-300 opacity-80"></div>
+        </div>
+        
+        {/* World Map Overlay - positioned on the right side like reference */}
+        <div className="absolute inset-0 flex items-center justify-end pr-8 opacity-25">
+          <svg width="600" height="400" viewBox="0 0 600 400" className="max-w-full h-auto">
+            <defs>
+              <linearGradient id="worldMapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#ffffff', stopOpacity:0.6}} />
+                <stop offset="50%" style={{stopColor:'#60a5fa', stopOpacity:0.4}} />
+                <stop offset="100%" style={{stopColor:'#3b82f6', stopOpacity:0.3}} />
+              </linearGradient>
+            </defs>
+            
+            {/* World continents - more detailed shapes */}
+            {/* North America */}
+            <path d="M80 120 Q100 100 140 110 Q180 105 200 120 Q220 140 210 160 Q200 180 180 190 Q160 200 140 195 Q120 185 100 170 Q85 150 80 120 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* South America */}
+            <path d="M120 200 Q140 190 160 200 Q180 210 185 240 Q190 270 180 300 Q170 320 150 325 Q130 320 120 300 Q115 270 120 240 Q118 220 120 200 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* Europe */}
+            <path d="M240 100 Q260 95 280 100 Q300 105 310 120 Q315 135 305 145 Q295 155 280 150 Q265 145 250 140 Q240 125 240 100 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* Africa */}
+            <path d="M250 150 Q270 145 290 155 Q310 165 315 190 Q320 220 310 250 Q300 275 285 285 Q270 290 255 285 Q245 275 240 250 Q235 220 240 190 Q245 170 250 150 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* Asia */}
+            <path d="M320 90 Q360 85 400 95 Q440 105 470 120 Q490 140 485 165 Q480 190 460 200 Q440 205 420 200 Q400 195 380 185 Q360 175 340 160 Q325 140 320 115 Q318 100 320 90 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* Australia */}
+            <path d="M420 240 Q450 235 480 245 Q500 255 505 270 Q500 285 485 290 Q470 295 450 290 Q430 285 420 270 Q415 255 420 240 Z" 
+                  fill="url(#worldMapGrad)" opacity="0.7" stroke="#ffffff" strokeWidth="0.5"/>
+            
+            {/* Global connection network */}
+            <g opacity="0.6">
+              {/* Connection points */}
+              <circle cx="150" cy="150" r="2" fill="#fbbf24" opacity="0.9"/>
+              <circle cx="275" cy="125" r="2" fill="#fbbf24" opacity="0.9"/>
+              <circle cx="275" cy="200" r="2" fill="#fbbf24" opacity="0.9"/>
+              <circle cx="400" cy="140" r="2" fill="#fbbf24" opacity="0.9"/>
+              <circle cx="450" cy="265" r="2" fill="#fbbf24" opacity="0.9"/>
+              
+              {/* Connection lines */}
+              <line x1="150" y1="150" x2="275" y2="125" stroke="#fbbf24" strokeWidth="1" opacity="0.5"/>
+              <line x1="275" y1="125" x2="400" y2="140" stroke="#fbbf24" strokeWidth="1" opacity="0.5"/>
+              <line x1="275" y1="200" x2="400" y2="140" stroke="#fbbf24" strokeWidth="1" opacity="0.5"/>
+              <line x1="400" y1="140" x2="450" y2="265" stroke="#fbbf24" strokeWidth="1" opacity="0.5"/>
+              <line x1="150" y1="150" x2="275" y2="200" stroke="#fbbf24" strokeWidth="1" opacity="0.4"/>
+              
+              {/* Curved connection lines for global reach */}
+              <path d="M150 150 Q200 100 275 125" stroke="#fbbf24" strokeWidth="1" fill="none" opacity="0.4"/>
+              <path d="M275 125 Q350 80 400 140" stroke="#fbbf24" strokeWidth="1" fill="none" opacity="0.4"/>
+              <path d="M400 140 Q425 180 450 265" stroke="#fbbf24" strokeWidth="1" fill="none" opacity="0.4"/>
+            </g>
+          </svg>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
