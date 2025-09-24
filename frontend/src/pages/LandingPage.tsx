@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { ArrowRight, TrendingUp, Shield, Globe, DollarSign, Building2, Coins, Zap, Factory, TreePine, Bitcoin, FileText } from 'lucide-react'
+import { ArrowRight, TrendingUp, Shield, Globe, DollarSign, Building2, FileText } from 'lucide-react'
 
 export function LandingPage() {
   const investmentCategories = [
@@ -10,7 +10,7 @@ export function LandingPage() {
       description: "Growth-oriented investments in emerging markets, tech innovation, and small-cap opportunities",
       returns: "12-18%",
       risk: "Medium-High",
-      icon: TrendingUp,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='stockGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23059669;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2310b981;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(50,50)'%3E%3Cpath d='M0 200 L50 180 L100 120 L150 140 L200 80 L250 100 L300 40' stroke='url(%23stockGrad)' strokeWidth='4' fill='none'/%3E%3Cpath d='M0 200 L50 180 L100 120 L150 140 L200 80 L250 100 L300 40 L300 200 Z' fill='url(%23stockGrad)' opacity='0.2'/%3E%3Ccircle cx='0' cy='200' r='6' fill='%23059669'/%3E%3Ccircle cx='50' cy='180' r='6' fill='%23059669'/%3E%3Ccircle cx='100' cy='120' r='6' fill='%23059669'/%3E%3Ccircle cx='150' cy='140' r='6' fill='%23059669'/%3E%3Ccircle cx='200' cy='80' r='6' fill='%23059669'/%3E%3Ccircle cx='250' cy='100' r='6' fill='%23059669'/%3E%3Ccircle cx='300' cy='40' r='6' fill='%23059669'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EStock Performance%3C/text%3E%3C/svg%3E",
       keyAreas: ["Emerging Market Stocks", "Tech & Innovation", "Small-Cap Growth"]
     },
     {
@@ -18,7 +18,7 @@ export function LandingPage() {
       description: "Investments in private companies with buyouts, growth capital, and distressed asset strategies",
       returns: "15-25%",
       risk: "High",
-      icon: Building2,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='peGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231e40af;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(100,80)'%3E%3Crect x='0' y='40' width='40' height='120' fill='url(%23peGrad)' rx='4'/%3E%3Crect x='60' y='20' width='40' height='140' fill='url(%23peGrad)' rx='4'/%3E%3Crect x='120' y='60' width='40' height='100' fill='url(%23peGrad)' rx='4'/%3E%3Crect x='180' y='10' width='40' height='150' fill='url(%23peGrad)' rx='4'/%3E%3C/g%3E%3Cg transform='translate(50,50)'%3E%3Ccircle cx='150' cy='50' r='30' fill='none' stroke='%231e40af' strokeWidth='3'/%3E%3Cpath d='M135 50 L145 60 L165 40' stroke='%231e40af' strokeWidth='3' fill='none'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EPrivate Equity%3C/text%3E%3C/svg%3E",
       keyAreas: ["Company Buyouts", "Growth Capital", "Asset Turnarounds"]
     },
     {
@@ -26,7 +26,7 @@ export function LandingPage() {
       description: "Early-stage funding for technology, healthcare, green energy, and fintech startups",
       returns: "10x+ Potential",
       risk: "Very High",
-      icon: Zap,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='vcGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23dc2626;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23f87171;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(200,150)'%3E%3Cpath d='M-60 0 L-30 -40 L0 0 L30 -40 L60 0' stroke='url(%23vcGrad)' strokeWidth='4' fill='none'/%3E%3Ccircle cx='-60' cy='0' r='8' fill='%23dc2626'/%3E%3Ccircle cx='-30' cy='-40' r='8' fill='%23dc2626'/%3E%3Ccircle cx='0' cy='0' r='12' fill='%23dc2626'/%3E%3Ccircle cx='30' cy='-40' r='8' fill='%23dc2626'/%3E%3Ccircle cx='60' cy='0' r='8' fill='%23dc2626'/%3E%3C/g%3E%3Cg transform='translate(200,80)'%3E%3Cpath d='M-20 0 L0 -30 L20 0 Z' fill='url(%23vcGrad)'/%3E%3Cpath d='M-15 10 L0 -10 L15 10' fill='url(%23vcGrad)' opacity='0.7'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EVenture Capital%3C/text%3E%3C/svg%3E",
       keyAreas: ["Tech Startups", "Healthcare Innovation", "Green Energy"]
     },
     {
@@ -34,7 +34,7 @@ export function LandingPage() {
       description: "Complex strategies including long/short equity, global macro, and event-driven trades",
       returns: "15-20%",
       risk: "High",
-      icon: Globe,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='hfGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%237c3aed;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23a855f7;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(200,150)'%3E%3Ccircle cx='0' cy='0' r='80' fill='none' stroke='url(%23hfGrad)' strokeWidth='3'/%3E%3Ccircle cx='0' cy='0' r='50' fill='none' stroke='url(%23hfGrad)' strokeWidth='2' opacity='0.7'/%3E%3Ccircle cx='0' cy='0' r='20' fill='url(%23hfGrad)'/%3E%3Cpath d='M-60 -60 L60 60' stroke='url(%23hfGrad)' strokeWidth='2'/%3E%3Cpath d='M60 -60 L-60 60' stroke='url(%23hfGrad)' strokeWidth='2'/%3E%3C/g%3E%3Cg transform='translate(80,80)'%3E%3Cpath d='M0 0 Q20 -20 40 0 Q60 20 80 0' stroke='url(%23hfGrad)' strokeWidth='2' fill='none'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EHedge Funds%3C/text%3E%3C/svg%3E",
       keyAreas: ["Long/Short Equity", "Global Macro", "Event-Driven"]
     },
     {
@@ -42,7 +42,7 @@ export function LandingPage() {
       description: "High-growth commercial real estate and development projects in emerging markets",
       returns: "12-20%",
       risk: "Medium",
-      icon: Factory,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='reGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23059669;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2334d399;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(50,100)'%3E%3Crect x='0' y='80' width='60' height='100' fill='url(%23reGrad)' rx='4'/%3E%3Crect x='80' y='60' width='50' height='120' fill='url(%23reGrad)' rx='4'/%3E%3Crect x='150' y='40' width='70' height='140' fill='url(%23reGrad)' rx='4'/%3E%3Crect x='240' y='70' width='55' height='110' fill='url(%23reGrad)' rx='4'/%3E%3C/g%3E%3Cg transform='translate(50,100)'%3E%3Crect x='10' y='90' width='8' height='12' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='25' y='90' width='8' height='12' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='40' y='90' width='8' height='12' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='90' y='80' width='8' height='12' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='105' y='80' width='8' height='12' fill='%23ffffff' opacity='0.8'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EReal Estate%3C/text%3E%3C/svg%3E",
       keyAreas: ["Commercial Development", "Emerging Markets", "High IRR Projects"]
     },
     {
@@ -50,7 +50,7 @@ export function LandingPage() {
       description: "Gold, precious metals, oil & gas projects, and critical minerals for the future economy",
       returns: "8-15%",
       risk: "Medium",
-      icon: Coins,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='commGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23d97706;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23fbbf24;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(200,150)'%3E%3Ccircle cx='0' cy='0' r='60' fill='url(%23commGrad)'/%3E%3Ccircle cx='0' cy='0' r='40' fill='none' stroke='%23ffffff' strokeWidth='2'/%3E%3Ccircle cx='0' cy='0' r='20' fill='none' stroke='%23ffffff' strokeWidth='2'/%3E%3C/g%3E%3Cg transform='translate(100,100)'%3E%3Crect x='0' y='0' width='20' height='20' fill='url(%23commGrad)' transform='rotate(45 10 10)'/%3E%3Crect x='180' y='0' width='20' height='20' fill='url(%23commGrad)' transform='rotate(45 190 10)'/%3E%3Crect x='0' y='80' width='20' height='20' fill='url(%23commGrad)' transform='rotate(45 10 90)'/%3E%3Crect x='180' y='80' width='20' height='20' fill='url(%23commGrad)' transform='rotate(45 190 90)'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3ECommodities%3C/text%3E%3C/svg%3E",
       keyAreas: ["Gold & Precious Metals", "Oil & Gas", "Critical Minerals"]
     },
     {
@@ -58,7 +58,7 @@ export function LandingPage() {
       description: "Digital assets including Bitcoin, Ethereum, DeFi projects, and tokenized investments",
       returns: "8-20%+",
       risk: "Very High",
-      icon: Bitcoin,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='cryptoGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f59e0b;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23fbbf24;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(200,150)'%3E%3Ccircle cx='0' cy='0' r='70' fill='url(%23cryptoGrad)'/%3E%3Cpath d='M-30 -20 L-30 -40 L-10 -40 Q10 -40 10 -20 Q10 0 -10 0 L-20 0 L-20 20 Q-20 40 0 40 L20 40 L20 20 L30 20 L30 40 Q30 50 20 50 L-30 50 L-30 30 L-10 30 Q10 30 10 10 Q10 -10 -10 -10 L-20 -10 L-20 -30 Q-20 -50 0 -50 L20 -50 L20 -30 L30 -30 L30 -50 Q30 -60 20 -60 L-30 -60 Z' fill='%23ffffff'/%3E%3C/g%3E%3Cg transform='translate(80,80)'%3E%3Cpath d='M0 0 L40 0 L60 20 L40 40 L0 40 L20 20 Z' fill='url(%23cryptoGrad)' opacity='0.6'/%3E%3C/g%3E%3Cg transform='translate(260,80)'%3E%3Cpath d='M0 0 L40 0 L60 20 L40 40 L0 40 L20 20 Z' fill='url(%23cryptoGrad)' opacity='0.6'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3ECryptocurrencies%3C/text%3E%3C/svg%3E",
       keyAreas: ["Bitcoin & Ethereum", "DeFi Projects", "Tokenized Assets"]
     },
     {
@@ -66,7 +66,7 @@ export function LandingPage() {
       description: "Corporate bonds with lower credit ratings but significantly higher interest returns",
       returns: "8-12%",
       risk: "Medium-High",
-      icon: FileText,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='bondGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23065f46;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2310b981;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(50,80)'%3E%3Crect x='0' y='0' width='300' height='140' fill='url(%23bondGrad)' rx='8'/%3E%3Crect x='20' y='20' width='260' height='100' fill='%23ffffff' opacity='0.9' rx='4'/%3E%3C/g%3E%3Cg transform='translate(200,150)'%3E%3Ctext x='0' y='-20' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='24' font-weight='bold'%3EBOND%3C/text%3E%3Ctext x='0' y='10' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='16'%3E%24100,000%3C/text%3E%3Ctext x='0' y='30' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='12'%3E8-12%25 Yield%3C/text%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3EHigh-Yield Bonds%3C/text%3E%3C/svg%3E",
       keyAreas: ["Corporate Bonds", "Junk Bonds", "Fixed Income"]
     },
     {
@@ -74,7 +74,7 @@ export function LandingPage() {
       description: "Solar, wind, and hydro projects backed by government incentives and ESG focus",
       returns: "12-18%",
       risk: "Medium",
-      icon: TreePine,
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='renewGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23059669;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2334d399;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='%23f8fafc'/%3E%3Cg transform='translate(100,100)'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23fbbf24'/%3E%3Cpath d='M50 10 L55 25 L70 25 L58 35 L63 50 L50 42 L37 50 L42 35 L30 25 L45 25 Z' fill='%23f59e0b'/%3E%3C/g%3E%3Cg transform='translate(200,120)'%3E%3Crect x='0' y='60' width='80' height='40' fill='url(%23renewGrad)' rx='4'/%3E%3Crect x='10' y='70' width='15' height='20' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='30' y='70' width='15' height='20' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='50' y='70' width='15' height='20' fill='%23ffffff' opacity='0.8'/%3E%3C/g%3E%3Cg transform='translate(300,80)'%3E%3Cpath d='M0 80 Q-20 60 0 40 Q20 60 0 80' fill='url(%23renewGrad)'/%3E%3Cpath d='M0 80 Q20 60 40 80 Q20 100 0 80' fill='url(%23renewGrad)'/%3E%3Cpath d='M0 80 Q-20 100 -40 80 Q-20 60 0 80' fill='url(%23renewGrad)'/%3E%3Ccircle cx='0' cy='80' r='8' fill='%23ffffff'/%3E%3C/g%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16' font-weight='bold'%3ERenewable Energy%3C/text%3E%3C/svg%3E",
       keyAreas: ["Solar Projects", "Wind Energy", "Infrastructure"]
     }
   ]
@@ -266,13 +266,16 @@ export function LandingPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {investmentCategories.map((category, index) => {
-              const IconComponent = category.icon
               return (
                 <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="bg-blue-100 rounded-lg p-2">
-                        <IconComponent className="h-6 w-6 text-blue-600" />
+                      <div className="bg-gray-50 rounded-lg p-1 border">
+                        <img 
+                          src={category.image} 
+                          alt={`${category.name} investment illustration`}
+                          className="h-16 w-20 object-cover rounded"
+                        />
                       </div>
                       <div>
                         <CardTitle className="text-lg font-bold">{category.name}</CardTitle>
