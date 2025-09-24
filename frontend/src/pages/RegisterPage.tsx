@@ -40,30 +40,11 @@ interface ApiError {
 }
 
 export function RegisterPage() {
-  const [formData, setFormData] = useState<FormData>({
-    first_name: '',
-    last_name: '',
-    email: '',
-    country: '',
-    phone: '',
-    referral_code: '',
-    password: '',
-    confirmPassword: ''
-  })
-  
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const refCode = urlParams.get('ref')
-    if (refCode) {
-      setFormData(prev => ({ ...prev, referral_code: refCode }))
-    }
-  }, [])
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
