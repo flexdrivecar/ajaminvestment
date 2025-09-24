@@ -738,14 +738,20 @@ export function LandingPage() {
               <p className="text-slate-300 mb-4">
                 Premier international investment firm delivering exceptional returns through diversified portfolio management.
               </p>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Globe className="h-4 w-4 text-yellow-400" />
-                  <span className="text-slate-300">Global Headquarters</span>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Globe className="h-4 w-4 text-yellow-400" />
+                    <span className="text-white font-semibold">Head Office</span>
+                  </div>
+                  <span className="text-slate-300 text-sm">71-75 Shelton Street<br />London WC2H 9JQ, UK</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Building2 className="h-4 w-4 text-yellow-400" />
-                  <span className="text-slate-300">52 Countries Worldwide</span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Building2 className="h-4 w-4 text-yellow-400" />
+                    <span className="text-white font-semibold">Kenya Branch</span>
+                  </div>
+                  <span className="text-slate-300 text-sm">Commodore Office Suites<br />Kindaruma Road, Nairobi</span>
                 </div>
               </div>
             </div>
@@ -761,6 +767,25 @@ export function LandingPage() {
               </ul>
             </div>
 
+            {/* Global Offices */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Global Offices</h4>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <span className="font-semibold text-white">Dubai, UAE</span><br />
+                  <span className="text-slate-300">Level 15, Emirates Towers<br />Sheikh Zayed Road, Dubai</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-white">South Africa</span><br />
+                  <span className="text-slate-300">Sandton City Office Tower<br />83 Rivonia Road, Sandton</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-white">Somalia</span><br />
+                  <span className="text-slate-300">Jazeera Palace Hotel Complex<br />Maka Al Mukarama Road, Mogadishu</span>
+                </div>
+              </div>
+            </div>
+
             {/* Investment Sectors */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Investment Sectors</h4>
@@ -774,20 +799,20 @@ export function LandingPage() {
               </ul>
             </div>
 
-            {/* Get Started */}
+            {/* Contact & Get Started */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Get Started</h4>
+              <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <DollarSign className="h-4 w-4 text-yellow-400" />
-                  <a href="mailto:invest@ajmal.com" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                    invest@ajmal.com
+                  <a href="mailto:info@ajmalinvestment.com" className="text-slate-300 hover:text-yellow-400 transition-colors">
+                    info@ajmalinvestment.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Building2 className="h-4 w-4 text-yellow-400" />
-                  <a href="tel:+15551234567" className="text-slate-300 hover:text-yellow-400 transition-colors">
-                    +1 (555) 123-4567
+                  <a href="tel:+447882415437" className="text-slate-300 hover:text-yellow-400 transition-colors">
+                    +44 7882 415437
                   </a>
                 </div>
                 <Link to="/register">
